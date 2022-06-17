@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd"
+>
+<struts>
+    <package name="struts2" namespace="/" extends="struts-default">
+        
+        <!--Conjunto de acciones para persona-->
+        <action name="listarPersonas" method="listarPersonas" class="com.ipn.mx.actions.PersonaAction">
+            <result name="success">
+                /personas/listaDePersonas.jsp
+            </result>
+        </action>
+        <action name="almacenarPersona" method="almacenarPersona" class="com.ipn.mx.actions.PersonaAction">
+            <result name="success" type="redirect">
+                listarPersonas
+            </result>
+        </action>
+        <action name="eliminarPersona" method="eliminarPersona" class="com.ipn.mx.actions.PersonaAction">
+            <result name="success" type="redirect">
+                listarPersonas
+            </result>
+        </action>
+        <action name="actualizarPersona" method="actualizarPersona" class="com.ipn.mx.actions.PersonaAction">
+            <result name="success">
+                /personas/personaForm.jsp
+            </result>
+        </action>
+        <action name="agregarPersona" method="agregarPersona" class="com.ipn.mx.actions.PersonaAction">
+            <result name="success">
+                /personas/personaForm.jsp
+            </result>
+        </action>
+        <action name="verPersona" method="verPersona" class="com.ipn.mx.actions.PersonaAction">
+            <result name="success">
+                /personas/datosPersona.jsp
+            </result>
+        </action>
+        <!--Conjunto de acciones para persona-->
+        <action name="listarEstantes" method="listarEstantes" class="com.ipn.mx.actions.EstanteAction">
+            <result name="success">
+                /estantes/listaDeEstantes.jsp
+            </result>
+        </action>
+        <action name="almacenarEstante" method="almacenarPersona" class="com.ipn.mx.actions.PersonaAction">
+            <result name="success" type="redirect">
+                listarPersonas
+            </result>
+        </action>
+        <action name="eliminarPersona" method="eliminarPersona" class="com.ipn.mx.actions.PersonaAction">
+            <result name="success" type="redirect">
+                listarPersonas
+            </result>
+        </action>
+        <action name="actualizarPersona" method="actualizarPersona" class="com.ipn.mx.actions.PersonaAction">
+            <result name="success">
+                /personas/personaForm.jsp
+            </result>
+        </action>
+        <action name="agregarPersona" method="agregarPersona" class="com.ipn.mx.actions.PersonaAction">
+            <result name="success">
+                /personas/personaForm.jsp
+            </result>
+        </action>
+        <action name="verPersona" method="verPersona" class="com.ipn.mx.actions.PersonaAction">
+            <result name="success">
+                /personas/datosPersona.jsp
+            </result>
+        </action>
+    </package>
+</struts>
