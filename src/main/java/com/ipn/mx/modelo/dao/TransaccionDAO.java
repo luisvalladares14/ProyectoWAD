@@ -22,9 +22,9 @@ public class TransaccionDAO {
     private Connection conexion;
 
     private void obtenerConexion() {
-        String usuario = "cpyffhiouinhtf";
-        String clave = "a547dc7f629d0fd35c884b623eec3adcd15988a687513cc0c29668a901d44879";
-        String url = "jdbc:postgresql://ec2-34-232-245-127.compute-1.amazonaws.com:5432/deveveie33un21";
+        String usuario = "onnmvthqocwomw";
+        String clave = "137aa7c6b304f445caf05d6adc74246ca1cec4872dc64e0e9344a156985262f2";
+        String url = "jdbc:postgresql://ec2-3-224-8-189.compute-1.amazonaws.com:5432/d4ss4kcssslh6p";
         String driverPostgreSql = "org.postgresql.Driver";
 
         try {
@@ -34,6 +34,7 @@ public class TransaccionDAO {
             Logger.getLogger(PersonaDAO.class.getName()).log(Level.SEVERE, null, e);
         }
     }
+
     public void create(TransaccionDTO dto) throws SQLException {
         obtenerConexion();
         PreparedStatement ps = null;
@@ -64,7 +65,7 @@ public class TransaccionDAO {
             ps.setInt(3, dto.getEntidad().getCodigoLibro());
             ps.setInt(4, dto.getEntidad().getIdPersona());
             ps.setInt(5, dto.getEntidad().getNumeroTransaccion());
-            
+
             ps.executeUpdate();
         } finally {
             if (ps != null) {
@@ -120,6 +121,7 @@ public class TransaccionDAO {
             }
         }
     }
+
     public List readAll() throws SQLException {
         obtenerConexion();
         PreparedStatement ps = null;
@@ -147,9 +149,9 @@ public class TransaccionDAO {
         }
     }
 
-    private List obtenerResultados(ResultSet rs) throws SQLException{
+    private List obtenerResultados(ResultSet rs) throws SQLException {
         List resultados = new ArrayList();
-        while(rs.next()){
+        while (rs.next()) {
             TransaccionDTO dto = new TransaccionDTO();
             dto.getEntidad().setNumeroTransaccion(rs.getInt("numeroTransaccion"));
             dto.getEntidad().setFechaTransaccion(rs.getString("fechaTransaccion"));
@@ -161,4 +163,3 @@ public class TransaccionDAO {
         return resultados;
     }
 }
-

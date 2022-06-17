@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class LibroDAO {
+
     private static final String SQL_INSERT = "insert into Libro (autorLibro, tituloLibro, statusLibro, generoLibro, idSucursal,codigoUnico)"
             + "values (?,?,?,?,?,?)";
     private static final String SQL_UPDATE = "update Libro set autorLibro = ?, tituloLibro =?, statusLibro=?, generoLibro=?,idSucursal=?,codigoUnico=? "
@@ -19,15 +20,15 @@ public class LibroDAO {
     private static final String SQL_DELETE = "delete from Libro where codigoLibro = ?";
     private static final String SQL_SELECT = "select * from Libro where codigoLibro = ?";
     private static final String SQL_SELECT_ALL = "select * from Libro;";
-    
+
     private Connection conexion;
 
     private void obtenerConexion() {
         //Heroku
-        String usuario = "cpyffhiouinhtf";
-        String clave = "a547dc7f629d0fd35c884b623eec3adcd15988a687513cc0c29668a901d44879";
-        String url = "jdbc:postgresql://ec2-34-232-245-127.compute-1.amazonaws.com:5432/deveveie33un21"; // ?sslmode=require
-        
+        String usuario = "onnmvthqocwomw";
+        String clave = "137aa7c6b304f445caf05d6adc74246ca1cec4872dc64e0e9344a156985262f2";
+        String url = "jdbc:postgresql://ec2-3-224-8-189.compute-1.amazonaws.com:5432/d4ss4kcssslh6p"; // ?sslmode=require
+
         String driverPostgreSql = "org.postgresql.Driver";
         try {
             Class.forName(driverPostgreSql);
@@ -36,8 +37,8 @@ public class LibroDAO {
             Logger.getLogger(LibroDAO.class.getName()).log(Level.SEVERE, null, e);
         }
     }
-    
-    public void create(LibroDTO dto)throws SQLException{
+
+    public void create(LibroDTO dto) throws SQLException {
         obtenerConexion();
         PreparedStatement ps = null;
         try {
@@ -47,7 +48,7 @@ public class LibroDAO {
             ps.setString(3, dto.getEntidad().getStatusLibro());
             ps.setString(4, dto.getEntidad().getGeneroLibro());
             ps.setInt(5, dto.getEntidad().getIdSucursal());
-            ps.setInt(6,dto.getEntidad().getCodigoUnico());
+            ps.setInt(6, dto.getEntidad().getCodigoUnico());
             ps.executeUpdate();
         } finally {
             if (ps != null) {
@@ -58,7 +59,7 @@ public class LibroDAO {
             }
         }
     }
-    
+
     public void update(LibroDTO dto) throws SQLException {
         obtenerConexion();
         PreparedStatement ps = null;
@@ -69,7 +70,7 @@ public class LibroDAO {
             ps.setString(3, dto.getEntidad().getStatusLibro());
             ps.setString(4, dto.getEntidad().getGeneroLibro());
             ps.setInt(5, dto.getEntidad().getIdSucursal());
-            ps.setInt(6,dto.getEntidad().getCodigoUnico());
+            ps.setInt(6, dto.getEntidad().getCodigoUnico());
             ps.setInt(7, dto.getEntidad().getCodigoLibro());
             ps.executeUpdate();
         } finally {
@@ -81,8 +82,8 @@ public class LibroDAO {
             }
         }
     }
-    
-    public void delete(LibroDTO dto) throws SQLException{
+
+    public void delete(LibroDTO dto) throws SQLException {
         obtenerConexion();
         PreparedStatement ps = null;
         try {
@@ -98,53 +99,64 @@ public class LibroDAO {
             }
         }
     }
-    
-    public LibroDTO read(LibroDTO dto) throws SQLException{
+
+    public LibroDTO read(LibroDTO dto) throws SQLException {
         obtenerConexion();
         PreparedStatement ps = null;
-        ResultSet rs =null;
-        try{
+        ResultSet rs = null;
+        try {
             ps = conexion.prepareStatement(SQL_SELECT);
             ps.setInt(1, dto.getEntidad().getCodigoLibro());
             rs = ps.executeQuery();
             List resultados = obtenerResultados(rs);
-            if(resultados.size() > 0){
+            if (resultados.size() > 0) {
                 return (LibroDTO) resultados.get(0);
-            }else{
+            } else {
                 return null;
             }
-        }finally{
-            if (rs != null) rs.close();
-            if (ps != null) ps.close();
-            if (conexion != null) conexion.close();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ps != null) {
+                ps.close();
+            }
+            if (conexion != null) {
+                conexion.close();
+            }
         }
     }
-    
-    public List readAll() throws SQLException{
+
+    public List readAll() throws SQLException {
         obtenerConexion();
         PreparedStatement ps = null;
         ResultSet rs = null;
-        try{
+        try {
             ps = conexion.prepareStatement(SQL_SELECT_ALL);
             rs = ps.executeQuery();
             List resultados = obtenerResultados(rs);
-            if (resultados.size() > 0){
+            if (resultados.size() > 0) {
                 return resultados;
-            }else{
+            } else {
                 System.out.println("readAll");
                 return null;
             }
-        }finally{
-            if (rs != null) rs.close();
-            if (ps != null) ps.close();
-            if (conexion != null) conexion.close();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ps != null) {
+                ps.close();
+            }
+            if (conexion != null) {
+                conexion.close();
+            }
         }
     }
-    
-    
-    private List obtenerResultados(ResultSet rs) throws SQLException{
-       List resultados = new ArrayList();
-        while(rs.next()){
+
+    private List obtenerResultados(ResultSet rs) throws SQLException {
+        List resultados = new ArrayList();
+        while (rs.next()) {
             LibroDTO dto = new LibroDTO();
             dto.getEntidad().setCodigoLibro(rs.getInt("codigoLibro"));
             dto.getEntidad().setAutorLibro(rs.getString("autorLibro"));

@@ -11,22 +11,21 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 public class SucursalDAO {
+
     private static final String SQL_INSERT = "insert into sucursal (direccionSucursal, codigoPostal, numeroTelefono) values (?, ?, ?);";
     private static final String SQL_UPDATE = "update sucursal set direccionSucursal = ?, codigoPostal = ?, numeroTelefono = ? where idSucursal = ?";
     private static final String SQL_DELETE = "delete from sucursal where idsucursal= ?";
     private static final String SQL_SELECT = "select * from sucursal where idsucursal = ?";
     private static final String SQL_SELECT_ALL = "select * from sucursal";
-    
+
     private Connection conexion;
-    
+
     private void obtenerConexion() {
-        String usuario = "cpyffhiouinhtf";
-        String clave = "a547dc7f629d0fd35c884b623eec3adcd15988a687513cc0c29668a901d44879";
-        String url = "jdbc:postgresql://ec2-34-232-245-127.compute-1.amazonaws.com:5432/deveveie33un21"; // ?sslmode=require
-        
-        
+        String usuario = "onnmvthqocwomw";
+        String clave = "137aa7c6b304f445caf05d6adc74246ca1cec4872dc64e0e9344a156985262f2";
+        String url = "jdbc:postgresql://ec2-3-224-8-189.compute-1.amazonaws.com:5432/d4ss4kcssslh6p";// ?sslmode=require
+
         String driverPostgreSql = "org.postgresql.Driver";
         try {
             Class.forName(driverPostgreSql);
@@ -35,7 +34,7 @@ public class SucursalDAO {
             Logger.getLogger(SucursalDAO.class.getName()).log(Level.SEVERE, null, e);
         }
     }
-    
+
     public void create(SucursalDTO dto) throws SQLException {
         obtenerConexion();
         PreparedStatement ps = null;
@@ -54,7 +53,7 @@ public class SucursalDAO {
             }
         }
     }
-    
+
     public void update(SucursalDTO dto) throws SQLException {
         obtenerConexion();
         PreparedStatement ps = null;
@@ -75,7 +74,7 @@ public class SucursalDAO {
             }
         }
     }
-    
+
     public void delete(SucursalDTO dto) throws SQLException {
         obtenerConexion();
         PreparedStatement ps = null;
@@ -92,7 +91,7 @@ public class SucursalDAO {
             }
         }
     }
-    
+
     public SucursalDTO read(SucursalDTO dto) throws SQLException {
         obtenerConexion();
         PreparedStatement ps = null;
@@ -104,8 +103,7 @@ public class SucursalDAO {
             List resultados = obtenerResultados(rs);
             if (resultados.size() > 0) {
                 return (SucursalDTO) resultados.get(0);
-            } 
-            else {
+            } else {
                 return null;
             }
         } finally {
@@ -120,7 +118,7 @@ public class SucursalDAO {
             }
         }
     }
-    
+
     public List readAll() throws SQLException {
         obtenerConexion();
         PreparedStatement ps = null;
@@ -131,8 +129,7 @@ public class SucursalDAO {
             List resultados = obtenerResultados(rs);
             if (resultados.size() > 0) {
                 return resultados;
-            }
-            else {
+            } else {
                 return null;
             }
         } finally {
@@ -147,10 +144,10 @@ public class SucursalDAO {
             }
         }
     }
-    
+
     private List obtenerResultados(ResultSet rs) throws SQLException {
         List resultados = new ArrayList();
-        while(rs.next()) {
+        while (rs.next()) {
             SucursalDTO dto = new SucursalDTO();
             dto.getEntidad().setIdSucursal(rs.getInt("idSucursal"));
             dto.getEntidad().setDireccionSucursal(rs.getString("direccionSucursal"));
@@ -160,6 +157,5 @@ public class SucursalDAO {
         }
         return resultados;
     }
-    
-    
+
 }

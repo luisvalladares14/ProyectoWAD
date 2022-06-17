@@ -22,9 +22,9 @@ public class EstanteDAO {
     
     private void obtenerConexion() {
         
-        String usuario = "cpyffhiouinhtf";
-        String clave = "a547dc7f629d0fd35c884b623eec3adcd15988a687513cc0c29668a901d44879";
-        String url = "jdbc:postgresql://ec2-34-232-245-127.compute-1.amazonaws.com:5432/deveveie33un21"; // ?sslmode=require
+        String usuario = "onnmvthqocwomw";
+        String clave = "137aa7c6b304f445caf05d6adc74246ca1cec4872dc64e0e9344a156985262f2";
+        String url = "jdbc:postgresql://ec2-3-224-8-189.compute-1.amazonaws.com:5432/d4ss4kcssslh6p"; // ?sslmode=require
         
         
         String driverPostgreSql = "org.postgresql.Driver";

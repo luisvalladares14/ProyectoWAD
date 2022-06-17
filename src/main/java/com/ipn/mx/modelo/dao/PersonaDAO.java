@@ -22,9 +22,9 @@ public class PersonaDAO {
     private Connection conexion;
 
     private void obtenerConexion() {
-        String usuario = "cpyffhiouinhtf";
-        String clave = "a547dc7f629d0fd35c884b623eec3adcd15988a687513cc0c29668a901d44879";
-        String url = "jdbc:postgresql://ec2-34-232-245-127.compute-1.amazonaws.com:5432/deveveie33un21";
+        String usuario = "onnmvthqocwomw";
+        String clave = "137aa7c6b304f445caf05d6adc74246ca1cec4872dc64e0e9344a156985262f2";
+        String url = "jdbc:postgresql://ec2-3-224-8-189.compute-1.amazonaws.com:5432/d4ss4kcssslh6p";
         String driverPostgreSql = "org.postgresql.Driver";
 
         try {
@@ -118,6 +118,7 @@ public class PersonaDAO {
             }
         }
     }
+
     public List readAll() throws SQLException {
         obtenerConexion();
         PreparedStatement ps = null;
@@ -145,9 +146,9 @@ public class PersonaDAO {
         }
     }
 
-    private List obtenerResultados(ResultSet rs) throws SQLException{
+    private List obtenerResultados(ResultSet rs) throws SQLException {
         List resultados = new ArrayList();
-        while(rs.next()){
+        while (rs.next()) {
             PersonaDTO dto = new PersonaDTO();
             dto.getEntidad().setIdPersona(rs.getInt("idPersona"));
             dto.getEntidad().setNombrePersona(rs.getString("nombrePersona"));
